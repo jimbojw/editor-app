@@ -95,13 +95,17 @@
       <dd>{{code}}{{#unless code}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
   </dl>
   <p class="noprint">
+    <a class="btn" title="edit" href="#/run-program/{{_id}}">
+      <i class='icon-play-sign'></i>
+      <span>Run Program</span>
+    </a>
     <a class="btn" title="edit" href="#/edit-program/{{_id}}">
       <i class='icon-edit'></i>
-      <span>Edit Program</span>
+      <span>Edit Program...</span>
     </a>
     <a class="btn" title="delete" href="#/delete-program/{{_id}}">
       <i class='icon-trash'></i>
-      <span>Delete Program</span>
+      <span>Delete Program...</span>
     </a>
   </p>
 </script>
@@ -191,6 +195,7 @@
 <script src="scripts/sammy/sammy.js"></script>
 <script src="scripts/bootstrap.js"></script>
 <script src="scripts/handlebars.js"></script>
+<script src="scripts/editor.js"></script>
 <script src="scripts/site.js"></script>
 </body>
 </html>
