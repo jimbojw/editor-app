@@ -74,7 +74,13 @@ var
     showProgram: function(context) {
       db.openDoc(this.params._id, {
         success: function(program){
-          context.$element().html(render('show-program', program));
+          context.$element()
+            .html(render('show-program', program))
+            .find('.run-program')
+              .click(function(e){
+                system.runtime.exec(program.code);
+              });
+          
         }
       });
     },

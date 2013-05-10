@@ -59,14 +59,13 @@
   <p class="noprint">
     <a class="btn btn-primary" href="#/add-program">
       <i class="icon-plus icon-white"></i>
-      <span>Add an program</span>
+      <span>Add a program</span>
     </a>
   </p>
   <table class="table table-bordered table-striped table-hover list-programs">
     <thead>
       <tr>
         <th>Name</th>
-        <th>Code</th>
       </tr>
     </thead>
     <tbody>
@@ -74,7 +73,6 @@
         {{#value}}
         <tr data-docid={{_id}}>
           <td>{{name}}</td>
-          <td>{{code}}</td>
         </tr>
         {{/value}}
       {{/rows}}
@@ -91,11 +89,13 @@
   <dl>
     <dt>Name:</dt>
       <dd>{{name}}{{#unless name}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
+    <dt>Description:</dt>
+      <dd>{{description}}{{#unless description}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
     <dt>Code:</dt>
-      <dd>{{code}}{{#unless code}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
+      <dd><pre class="code">{{code}}</pre>{{#unless code}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
   </dl>
   <p class="noprint">
-    <a class="btn" title="edit" href="#/run-program/{{_id}}">
+    <a class="btn run-program" title="run">
       <i class='icon-play-sign'></i>
       <span>Run Program</span>
     </a>
@@ -115,7 +115,7 @@
     existing program.
   -->
   <h2>
-    <span>{{action}} an Program</span>
+    <span>{{action}} a Program</span>
   </h2>
   <form class="form-horizontal well" action="#/save-program" method="post">
     <fieldset>
@@ -128,9 +128,16 @@
         </div>
       </div>
       <div class="control-group">
+        <label class="control-label" for="textarea-description">Description</label>
+        <div class="controls">
+          <textarea name="description" class="input-xlarge" id="textarea-description" rows="8">{{description}}</textarea>
+          <p class="help-block">What does this program do?</p>
+        </div>
+      </div>
+      <div class="control-group">
         <label class="control-label" for="textarea-code">Code</label>
         <div class="controls">
-          <textarea name="code" class="input-xlarge" id="textarea-code" rows="8">{{code}}</textarea>
+          <textarea name="code" class="input-xlarge code" id="textarea-code" rows="8">{{code}}</textarea>
           <p class="help-block">JavaScript code for this program.</p>
         </div>
       </div>
@@ -151,7 +158,7 @@
 <script type="text/x-handlebars-template" class="delete-program">
   <!--
     Template for producing a form that asks for confirmation before deleting
-    an program.
+    a program.
   -->
   <h2>
     <span>Delete a Program</span>
@@ -173,9 +180,15 @@
         </div>
       </div>
       <div class="control-group">
+        <label class="control-label" for="textarea-description">Description</label>
+        <div class="controls">
+          <textarea name="description" class="input-xlarge" id="textarea-description" rows="8" readonly>{{description}}</textarea>
+        </div>
+      </div>
+      <div class="control-group">
         <label class="control-label" for="textarea-code">Code</label>
         <div class="controls">
-          <textarea name="notes" class="input-xlarge" id="textarea-code" rows="8" readonly>{{code}}</textarea>
+          <textarea name="code" class="input-xlarge" id="textarea-code" rows="8" readonly>{{code}}</textarea>
         </div>
       </div>
       <div class="form-actions">
