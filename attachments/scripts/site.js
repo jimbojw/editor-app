@@ -109,6 +109,22 @@ var
     },
     
     /**
+     * form for copying an existing program.
+     */
+    copyProgramForm: function(context) {
+      db.openDoc(this.params._id, {
+        success: function(program){
+          delete program._id;
+          delete program._rev;
+          context.$element()
+            .html(render('manage-program', $.extend(program, {
+              action: 'Copy'
+            })));
+        }
+      });
+    },
+    
+    /**
      * save a new or edited program.
      */
     saveProgram: function(context) {
@@ -162,6 +178,7 @@ var
     
     this.get('#/add-program', views.addProgramForm);
     this.get('#/edit-program/:_id', views.editProgramForm);
+    this.get('#/copy-program/:_id', views.copyProgramForm);
     this.post('#/save-program', views.saveProgram);
     
     this.get('#/delete-program/:_id', views.deleteProgramForm);
