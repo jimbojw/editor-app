@@ -88,7 +88,7 @@ PUT http://localhost:5984/editor-app/_design/app
 Finished push. 2-7b4d1456e90c988c6a86b6476d08bfb1
 ```
 
-After editor-app is deployed, you can access it via its `_rewrite` location: [http://localhost:5984/editor-app/_design/editor-app/_rewrite/](http://localhost:5984/editor-app/_design/editor-app/_rewrite/)
+After editor-app is deployed, you can access it via its `_rewrite` location: [http://localhost:5984/editor-app/_design/editor/_rewrite/](http://localhost:5984/editor-app/_design/editor/_rewrite/)
 
 ## updating editor-app
 
