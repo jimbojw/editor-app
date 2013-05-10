@@ -19,7 +19,7 @@ html, body {
 }
 .code {
   font-family: monospace;
-  max-height: 5em;
+  max-height: 8em;
 }
 
 @media print {

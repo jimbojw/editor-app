@@ -57,7 +57,7 @@
     <span><i class='icon-book'></i> Programs</span>
   </h2>
   <p class="noprint">
-    <a class="btn btn-primary" href="#/add-program">
+    <a class="btn btn-large btn-primary" href="#/add-program">
       <i class="icon-plus icon-white"></i>
       <span>Add a program</span>
     </a>
@@ -86,6 +86,12 @@
   <h2>
     <span><span class="noprint">Program: </span>{{name}}</span>
   </h2>
+  <p class="noprint">
+    <a class="btn btn-large btn-primary run-program" title="run">
+      <i class='icon-play-sign'></i>
+      <span>Run Program</span>
+    </a>
+  </p>
   <dl>
     <dt>Name:</dt>
       <dd>{{name}}{{#unless name}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
@@ -95,19 +101,15 @@
       <dd><pre class="code">{{code}}</pre>{{#unless code}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
   </dl>
   <p class="noprint">
-    <a class="btn run-program" title="run">
-      <i class='icon-play-sign'></i>
-      <span>Run Program</span>
-    </a>
-    <a class="btn" title="edit" href="#/edit-program/{{_id}}">
+    <a class="btn btn-large" title="edit" href="#/edit-program/{{_id}}">
       <i class='icon-edit'></i>
       <span>Edit Program...</span>
     </a>
-    <a class="btn" title="copy" href="#/copy-program/{{_id}}">
+    <a class="btn btn-large" title="copy" href="#/copy-program/{{_id}}">
       <i class='icon-copy'></i>
       <span>Copy Program...</span>
     </a>
-    <a class="btn" title="delete" href="#/delete-program/{{_id}}">
+    <a class="btn btn-large" title="delete" href="#/delete-program/{{_id}}">
       <i class='icon-trash'></i>
       <span>Delete Program...</span>
     </a>
@@ -134,7 +136,7 @@
       <div class="control-group">
         <label class="control-label" for="textarea-description">Description</label>
         <div class="controls">
-          <textarea name="description" class="input-xlarge" id="textarea-description" rows="8">{{description}}</textarea>
+          <textarea name="description" class="input-xlarge" id="textarea-description" rows="5">{{description}}</textarea>
           <p class="help-block">What does this program do?</p>
         </div>
       </div>
@@ -146,11 +148,11 @@
         </div>
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary"><i class="icon-check"></i> Save</button>
+        <button type="submit" class="btn btn-large btn-primary"><i class="icon-check"></i> Save</button>
         {{#if _id}}
-          <a class="btn" href="#/show-program/{{_id}}">Cancel</a>
+          <a class="btn btn-large" href="#/show-program/{{_id}}">Cancel</a>
           {{else}}
-          <a class="btn" href="#/list-programs">Cancel</a>
+          <a class="btn btn-large" href="#/list-programs">Cancel</a>
         {{/if}}
       </div>
     </fieldset>
@@ -186,18 +188,18 @@
       <div class="control-group">
         <label class="control-label" for="textarea-description">Description</label>
         <div class="controls">
-          <textarea name="description" class="input-xlarge" id="textarea-description" rows="8" readonly>{{description}}</textarea>
+          <textarea name="description" class="input-xlarge" id="textarea-description" rows="5" readonly>{{description}}</textarea>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="textarea-code">Code</label>
         <div class="controls">
-          <textarea name="code" class="input-xlarge" id="textarea-code" rows="8" readonly>{{code}}</textarea>
+          <textarea name="code" class="input-xlarge code" id="textarea-code" rows="8" readonly>{{code}}</textarea>
         </div>
       </div>
       <div class="form-actions">
-        <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
-        <a class="btn" href="#/show-program/{{_id}}">Cancel</a>
+        <button type="submit" class="btn btn-large btn-danger"><i class="icon-trash"></i> Delete</button>
+        <a class="btn btn-large" href="#/show-program/{{_id}}">Cancel</a>
       </div>
     </fieldset>
     {{#if _id}}<input type="hidden" name="_id" value="{{_id}}" />{{/if}}
