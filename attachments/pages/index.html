@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Editor App</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="styles/bootstrap-responsive.min.css" />
+<link rel="stylesheet" type="text/css" href="styles/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="styles/site.css" />
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+<link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+</head>
+<body>
+<div class="navbar navbar-fixed-top noprint">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#/"><i class='icon-play-circle'></i> Editor App</a>
+      <div class="nav-collapse collapse" id="main-menu">
+        <ul class="nav" id="main-menu-left">
+          <li><a href="#/list-programs"><i class='icon-book'></i> <span>Programs</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="frame container">
+<div class="main">
+<!--
+  This element is Sammy's context element.
+  The registered hash routes are rendered here.
+-->
+</div>
+</div>
+<script type="text/x-handlebars-template" class="main">
+  <!--
+    Template for displaying the main application entry point.
+  -->
+  <!-- Masthead
+  ================================================== -->
+  <header class="jumbotron subhead">
+    <h1>Editor App</h1>
+    <p class="lead">Application for developing applications on mobile devices.</p>
+  </header>
+</script>
+<script type="text/x-handlebars-template" class="list-programs">
+  <!--
+    Template for displaying the list of programs.
+  -->
+  <h2>
+    <span><i class='icon-book'></i> Programs</span>
+  </h2>
+  <p class="noprint">
+    <a class="btn btn-primary" href="#/add-program">
+      <i class="icon-plus icon-white"></i>
+      <span>Add an program</span>
+    </a>
+  </p>
+  <table class="table table-bordered table-striped table-hover list-programs">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#rows}}
+        {{#value}}
+        <tr data-docid={{_id}}>
+          <td>{{name}}</td>
+          <td>{{code}}</td>
+        </tr>
+        {{/value}}
+      {{/rows}}
+    </tbody>
+  </table>
+</script>
+<script type="text/x-handlebars-template" class="show-program">
+  <!--
+    Template for showing a program's information with buttons for further action.
+  -->
+  <h2>
+    <span><span class="noprint">Program: </span>{{name}}</span>
+  </h2>
+  <dl>
+    <dt>Name:</dt>
+      <dd>{{name}}{{#unless name}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
+    <dt>Code:</dt>
+      <dd>{{code}}{{#unless code}}<i class="icon-exclamation-sign"></i> None Specified{{/unless}}</dd>
+  </dl>
+  <p class="noprint">
+    <a class="btn" title="edit" href="#/edit-program/{{_id}}">
+      <i class='icon-edit'></i>
+      <span>Edit Program</span>
+    </a>
+    <a class="btn" title="delete" href="#/delete-program/{{_id}}">
+      <i class='icon-trash'></i>
+      <span>Delete Program</span>
+    </a>
+  </p>
+</script>
+<script type="text/x-handlebars-template" class="manage-program">
+  <!--
+    Template for producing a form that manages adding a new program or editing an 
+    existing program.
+  -->
+  <h2>
+    <span>{{action}} an Program</span>
+  </h2>
+  <form class="form-horizontal well" action="#/save-program" method="post">
+    <fieldset>
+      <legend>Program Details</legend>
+      <div class="control-group">
+        <label class="control-label" for="input-name">Name</label>
+        <div class="controls">
+          <input name="name" type="text" class="input-xlarge" id="input-name" value="{{name}}"/>
+          <p class="help-block">This program's name. You may want to include a verison number.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="textarea-code">Code</label>
+        <div class="controls">
+          <textarea name="code" class="input-xlarge" id="textarea-code" rows="8">{{code}}</textarea>
+          <p class="help-block">JavaScript code for this program.</p>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary"><i class="icon-check"></i> Save</button>
+        {{#if _id}}
+          <a class="btn" href="#/show-program/{{_id}}">Cancel</a>
+          {{else}}
+          <a class="btn" href="#/list-programs">Cancel</a>
+        {{/if}}
+      </div>
+    </fieldset>
+    {{#if _id}}<input type="hidden" name="_id" value="{{_id}}" />{{/if}}
+    {{#if _rev}}<input type="hidden" name="_rev" value="{{_rev}}" />{{/if}}
+    <input type="hidden" name="type" value="program" />
+  </form>
+</script>
+<script type="text/x-handlebars-template" class="delete-program">
+  <!--
+    Template for producing a form that asks for confirmation before deleting
+    an program.
+  -->
+  <h2>
+    <span>Delete a Program</span>
+  </h2>
+  <div class="alert alert-block">
+    <h4 class="alert-heading">Permanently Delete Program</h4>
+    <p>
+      Are you sure you want to permanently delete this program?
+    </p>
+  </div>
+  <form class="form-horizontal well" action="#/delete-program" method="post">
+    <fieldset>
+      <legend>Program Details</legend>
+      <div class="control-group">
+        <label class="control-label" for="input-name">Name</label>
+        <div class="controls">
+          <input name="name" type="hidden" id="input-name" value="{{name}}"/>
+          <span class="input-xlarge uneditable-input">{{name}}</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="textarea-code">Code</label>
+        <div class="controls">
+          <textarea name="notes" class="input-xlarge" id="textarea-code" rows="8" readonly>{{code}}</textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-danger"><i class="icon-trash"></i> Delete</button>
+        <a class="btn" href="#/show-program/{{_id}}">Cancel</a>
+      </div>
+    </fieldset>
+    {{#if _id}}<input type="hidden" name="_id" value="{{_id}}" />{{/if}}
+    {{#if _rev}}<input type="hidden" name="_rev" value="{{_rev}}" />{{/if}}
+    <input type="hidden" name="type" value="program" />
+    <input type="hidden" name="deleted" value="true" />
+  </form>
+</script>
+<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery.couch.js"></script>
+<script src="scripts/jquery.request.js"></script>
+<script src="scripts/sammy/sammy.js"></script>
+<script src="scripts/bootstrap.js"></script>
+<script src="scripts/handlebars.js"></script>
+<script src="scripts/site.js"></script>
+</body>
+</html>

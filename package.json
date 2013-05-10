@@ -1,0 +1,16 @@
+{
+  "name" : "editor-app",
+  "version" : "0.0.1",
+  "description" : "CouchApp for editing code on mobile devices.",
+  "homepage" : "https://github.com/jimbojw/editor-app/",
+  "keywords" : ["editor", "app"],
+  "author" : "jimbojw",
+  "contributors" : [],
+  "dependencies" : {
+    "couchapp" : ">=0.9.1"
+  },
+  "repository" : {
+    "type": "git",
+    "url": "git@github.com:jimbojw/editor-app.git"
+  }
+}

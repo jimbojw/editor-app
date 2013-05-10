@@ -1,0 +1,25 @@
+/**
+ * site.css
+ * styles for the whole app
+ */
+
+/**
+ * scaffolding
+ */
+html, body {
+  height: 100%;
+}
+.frame {
+  height: 100%;
+  min-height: 100%;
+}
+.main {
+  min-height: 100%;
+  position: relative;
+}
+
+@media print {
+  .noprint {
+    display: none;
+  }
+}
