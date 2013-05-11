@@ -6,6 +6,8 @@
 
 var
   
+  system = window.system,
+  
   /**
    * database object, used to communicate with couchdb.
    * principle methods include:
@@ -13,12 +15,12 @@ var
    * - saveDoc() to save a new or existing document
    * - view() to retrieve data from a map/reduce view
    */
-  db = window.db = $.couch.db(document.location.href.split('/')[3]),
+  db = system.db = $.couch.db(document.location.href.split('/')[3]),
   
   /**
    * handlebar templates
    */
-  templates = (function(){
+  templates = system.templates = (function(){
     var templates = {};
     $('script[type="text/x-handlebars-template"]')
       .each(function(){
@@ -31,8 +33,8 @@ var
    * convenience method for looking up a template and performing a handlebars
    * transformation on it to return HTML.
    */
-  render = function(name, data) {
-    var template = templates[name];
+  render = system.render = function(name, data) {
+    var template = system.templates[name];
     if (!template) {
       throw "no templates have the name: " + name;
     }
@@ -42,7 +44,7 @@ var
   /**
    * application views (targets for Sammy routes)
    */
-  views = {
+  views = system.views = {
     
     /**
      * main screen, welcome!
@@ -167,7 +169,7 @@ var
   /**
    * initialize the Sammy application, specifying routes.
    */
-  app = window.app = $.sammy('.main', function() {
+  app = system.app = $.sammy('.main', function() {
     
     // main entry point, welcome screen
     this.get('#/', views.main);
