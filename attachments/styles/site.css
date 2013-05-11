@@ -20,6 +20,7 @@ html, body {
 .code {
   font-family: monospace;
   max-height: 8em;
+  overflow: auto;
 }
 
 @media print {
